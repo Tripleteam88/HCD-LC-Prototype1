@@ -1,5 +1,5 @@
 import pygame
-from PlayerClass import Player
+from Classes import Player, Bullet
 pygame.init()
 
 # First I must create a window
@@ -16,11 +16,15 @@ BLUE = (0, 0, 255)
 
 # Control Varibles
 FPS = 60
-speed = 6
+speed = 5
 
 # PLayer
 #player_img = pygame.image.load('minichief.png')
 player = Player('ArrowU.png', WIDTH/2, HEIGHT/2)
+
+# Combat Variables
+bullet_list = []
+
 
 #Note that a pygame must have both a draw and update function
 # Create a seperatate draw function
@@ -31,6 +35,10 @@ def draw_window():
     
     # Custom Player draw method//Takes a surface as a parameter//The window surface in this case
     player.draw(WIN)
+    if bullet_list != []:
+        for bullet in bullet_list:
+                bullet.draw(WIN)
+
 
     pygame.display.update()
 
@@ -50,7 +58,8 @@ def main():
                 run = False
 
         keys = pygame.key.get_pressed()
-    
+
+
         # Movement keys
         if keys[pygame.K_a]:
             player.x -= speed
@@ -70,14 +79,29 @@ def main():
 
             # Try the animation instead, there may be no need to rotate
             player.animate('ArrowL.png')
+            bullet_list.append(Bullet('bullet.png', player.x, player.y, 'L'))
+            
+            # Remember to use different bullet pictures to account for where it should be facing
+            
+
 
         if keys[pygame.K_RIGHT]:
            player.animate('ArrowR.png')
+           bullet_list.append(Bullet('bullet.png', player.x, player.y, 'R'))
+
         if keys[pygame.K_UP]:
           player.animate('ArrowU.png')
+          bullet_list.append(Bullet('bullet.png', player.x, player.y, 'U'))
+
         if keys[pygame.K_DOWN]:
           player.animate('ArrowD.png')
-        
+          bullet_list.append(Bullet('bullet.png', player.x, player.y, 'D'))
+
+       
+
+        if bullet_list:
+            for bullet in bullet_list:
+                bullet.move()
 
         draw_window()
 
