@@ -1,4 +1,3 @@
-from typing import Tuple
 import pygame
 
 class Player:
@@ -31,3 +30,8 @@ class Player:
 
         pass
         
+    def animate(self, img):
+        self.img = pygame.image.load(img)
+
+
+        pass

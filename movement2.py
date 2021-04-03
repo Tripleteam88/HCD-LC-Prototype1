@@ -20,8 +20,7 @@ speed = 6
 
 # PLayer
 #player_img = pygame.image.load('minichief.png')
-player = Player('bullet.png', WIDTH/2, HEIGHT/2)
-
+player = Player('ArrowU.png', WIDTH/2, HEIGHT/2)
 
 #Note that a pygame must have both a draw and update function
 # Create a seperatate draw function
@@ -67,21 +66,18 @@ def main():
         # Arrow keys//Directional keys//Test
         if keys[pygame.K_LEFT]:
             ##pygame.transform.rotate(player.img, 180)
-            player.rotate(30)
+            ##player.rotate(30)
 
             # Try the animation instead, there may be no need to rotate
+            player.animate('ArrowL.png')
 
-
-            pass    
-            
-        '''
         if keys[pygame.K_RIGHT]:
-            player.ang = speed
+           player.animate('ArrowR.png')
         if keys[pygame.K_UP]:
-            player.ang = speed
+          player.animate('ArrowU.png')
         if keys[pygame.K_DOWN]:
-            player.ang = speed
-        '''
+          player.animate('ArrowD.png')
+        
 
         draw_window()
 
