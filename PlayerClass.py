@@ -17,21 +17,15 @@ class Player:
         # Scale values for image       
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
-    
-    def rotate(self, angle):
-        # Direction can be either up, down, left or right
         
-        # Test
-        self.img = pygame.transform.rotate(self.img, angle)
-        pass
 
     def draw(self, surface):
         self.surface = surface.blit(self.img, (self.x, self.y))
 
-        pass
+        
         
     def animate(self, img):
         self.img = pygame.image.load(img)
 
 
-        pass
+        
