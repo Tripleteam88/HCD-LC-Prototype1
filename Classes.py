@@ -11,12 +11,15 @@ class Player:
         self.x = x
         self.y = y
         
-        # Player Angle
+        # Player Angle//May delete
         self.ang = ang        
 
         # Scale values for image       
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
+
+        # Shooting//Cool-down
+        
         
 
     def draw(self, surface):
@@ -27,7 +30,8 @@ class Player:
         self.img = pygame.image.load(img)
 
     def shoot(self, direction):
-        
+        # Implement shooting cool-down
+
         pass
         
 class Bullet:

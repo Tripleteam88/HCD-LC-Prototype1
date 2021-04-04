@@ -96,7 +96,10 @@ def main():
         if keys[pygame.K_DOWN]:
           player.animate('ArrowD.png')
           bullet_list.append(Bullet('bullet.png', player.x, player.y, 'D'))
-
+        
+        # Exit key, press esc to quit
+        if keys[pygame.K_ESCAPE]:
+            break
        
 
         if bullet_list:
