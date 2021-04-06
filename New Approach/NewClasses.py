@@ -163,4 +163,36 @@ class Bullet:
             pass
 
 
+class Enemy:
+    '''
+    Enemies are the player's adversary, they will follow the player to try to attack.
+    They are killed once they take enough damage from the player's bullets.
+    '''
 
+    def __init__(self, img: str, x:int, y:int) -> None:
+        '''
+        The enemy class must be instansiated with a starting image and a starting position(x,y)
+        '''
+        # Load enemy image
+        self.img = pygame.image.load(img)
+
+        # Load enemy starting position
+        self.x = x
+        self.y = y
+
+        # Enemy Health // NOT FINAL
+        self.health = 300
+
+        
+
+    def move(self):
+        '''
+        Enemies will move towards the player 
+        '''
+        pass
+
+    def turn(self):
+        pass
+
+    def draw(self):
+        pass
