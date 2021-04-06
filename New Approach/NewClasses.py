@@ -17,12 +17,10 @@ class Player:
         self.x = x
         self.y = y
 
-        # NOTE: SCALE VALUES HAVE BEEN DELETED
-
-
         # Cool down control
+        self.cooldown = 25
 
-        pass
+
 
     def draw(self, surface):
         '''
@@ -45,12 +43,57 @@ class Player:
 
         pass
 
-    def shoot(self):
-        pass
+    def shoot(self, bullet_image: str,bullet_list: list, direction: str):
+        '''
+        This method will be used to add bullets to the bullets list.
+        This will replace the current rudementary shooting system and stop spam shooting.
+        '''
+
+        # Direction string should follow game logic// Currently single letter
+        # bullet_image string should be the image path to be used on the bullet
+        if self.cooldown == 25:
+            
+            
+            bullet_list.append(Bullet(bullet_image, self.x, self.y, direction))
+            
+            # Resets cooldown time to 0// VALUE IS NOT FINAL
+            self.cooldown = 0
+        
+        return bullet_list
+        
+    def handle_cooldown(self):
+        '''
+        This function should be called after the shoot function.
+        '''
+        if self.cooldown < 25:
+            self.cooldown += 1
 
 
 '''
 IDEAS HEADER(Ideas will go here):
+
+
+LIMIT PLAYER SHOOTING:
+    - Make another cooldown after the player has shot more then X amount of times
+    in a single direction.
+    * This encourages player movement and adds more engagement to the game
+    STATUS:
+        Does not need to be apart of the PROTOTYPE BUILD(pre-alpha)
+    
+    DECISION:
+        ADD TO GAME
+
+    # Function must check directional count first
+    # If user has shot 3 consecutive shots in the same direction user will not be allowed to shoot  
+    # A shot timer may be needed to prevent bug
+    # (Player directional cooldown is not reset once they stop shooting)
+    # 
+    # POSSIBLE FIXES:
+    #   Begin reset timer once the player shoots in another direction
+    #   Add a manual reload feature
+    #  
+    #   Combination of all fixes   
+
 
 Ammo system for player:
     -Player picks up bullets left on the ground to load up on ammo
@@ -74,7 +117,7 @@ class Bullet:
             '''
 
             # Speed of the bullet
-            self.speed = 10
+            self.speed = 25
 
             # Starting coordinates//Should be the player position
             self.x = x
