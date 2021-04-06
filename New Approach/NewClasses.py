@@ -33,6 +33,11 @@ Ammo system for player:
     -Player picks up bullets left on the ground to load up on ammo
     DECISION:
         Do not implement this in the prototype version.
+
+
+ENEMY AND PLAYER HEALTHBARS:
+    - Create healthbars that float over the player and the enemies' heads.
+
 '''
 
 
@@ -156,3 +161,6 @@ class Bullet:
             This method handles what happens when a bullet collides with another object.
             '''
             pass
+
+
+
