@@ -49,19 +49,19 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
         player.turn(PLayerLeft)
         bullet_list.append(Bullet('bullet.png', player.x, player.y, 'L'))
 
-    if keys[pygame.K_RIGHT]:
+    elif keys[pygame.K_RIGHT]:
         player.turn(PLayerRight)
         bullet_list.append(Bullet('bullet.png', player.x, player.y, 'R'))
 
-    if keys[pygame.K_UP]:
+    elif keys[pygame.K_UP]:
         player.turn(PLayerUP)
         bullet_list.append(Bullet('bullet.png', player.x, player.y, 'U'))
 
-    if keys[pygame.K_DOWN]:
+    elif keys[pygame.K_DOWN]:
         player.turn(PLayerDown)
         bullet_list.append(Bullet('bullet.png', player.x, player.y, 'D'))
 
-    if keys[pygame.K_ESCAPE]:
+    elif keys[pygame.K_ESCAPE]:
         # Exit key, press esc to quit
         pygame.quit()
 
