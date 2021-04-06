@@ -3,6 +3,40 @@ import pygame
 In this classes file, I will create the second versions of my classes to be used in my game proof of concept build
 '''
 
+'''
+IDEAS HEADER(Ideas will go here):
+
+
+LIMIT PLAYER SHOOTING:
+    - Make another cooldown after the player has shot more then X amount of times
+    in a single direction.
+    * This encourages player movement and adds more engagement to the game
+    STATUS:
+        Does not need to be apart of the PROTOTYPE BUILD(pre-alpha)
+    
+    DECISION:
+        ADD TO GAME
+
+    # Function must check directional count first
+    # If user has shot 3 consecutive shots in the same direction user will not be allowed to shoot  
+    # A shot timer may be needed to prevent bug
+    # (Player directional cooldown is not reset once they stop shooting)
+    # 
+    # POSSIBLE FIXES:
+    #   Begin reset timer once the player shoots in another direction
+    #   Add a manual reload feature
+    #  
+    #   Combination of all fixes   
+
+
+Ammo system for player:
+    -Player picks up bullets left on the ground to load up on ammo
+    DECISION:
+        Do not implement this in the prototype version.
+'''
+
+
+
 class Player:
     def __init__(self, img: str, x=0, y=0):
         '''
@@ -68,38 +102,6 @@ class Player:
         if self.cooldown < 25:
             self.cooldown += 1
 
-
-'''
-IDEAS HEADER(Ideas will go here):
-
-
-LIMIT PLAYER SHOOTING:
-    - Make another cooldown after the player has shot more then X amount of times
-    in a single direction.
-    * This encourages player movement and adds more engagement to the game
-    STATUS:
-        Does not need to be apart of the PROTOTYPE BUILD(pre-alpha)
-    
-    DECISION:
-        ADD TO GAME
-
-    # Function must check directional count first
-    # If user has shot 3 consecutive shots in the same direction user will not be allowed to shoot  
-    # A shot timer may be needed to prevent bug
-    # (Player directional cooldown is not reset once they stop shooting)
-    # 
-    # POSSIBLE FIXES:
-    #   Begin reset timer once the player shoots in another direction
-    #   Add a manual reload feature
-    #  
-    #   Combination of all fixes   
-
-
-Ammo system for player:
-    -Player picks up bullets left on the ground to load up on ammo
-    DECISION:
-        Do not implement this in the prototype version.
-'''
 
 
 
