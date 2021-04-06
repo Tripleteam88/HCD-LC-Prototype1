@@ -6,8 +6,8 @@ pygame.init()
 
 # ------------------------------------------
 # WINDOW // Constants should be all caps
-WIDTH = 900
-HEIGHT = 500
+WIDTH = 1000
+HEIGHT = 600
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 # Window variable is created // This method takes a tuple argument for the window's size
 # ------------------------------------------
@@ -15,7 +15,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 # ------------------------------------------
 # Control Variables
 FPS = 60
-speed = 5
+speed = 6
 # ------------------------------------------
 
 # ------------------------------------------
@@ -71,7 +71,7 @@ def main():
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
-
+        print(player.cooldown)
         draw()
 
 main()

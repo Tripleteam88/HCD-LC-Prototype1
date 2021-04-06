@@ -33,7 +33,7 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
 
     keys = pygame.key.get_pressed()
 
-    # Movement controls
+    # Movement controls // Speed parameter is the speed of the player
     if keys[pygame.K_a]:
         player.x -= speed
     if keys[pygame.K_d]:
@@ -44,33 +44,40 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
         player.y += speed
 
 
+ # TODO: store bullet string in a variable with a new function parameter 
     # Direction Controls: Turns player // Bullets need more images
     if keys[pygame.K_LEFT]:
         player.turn(PLayerLeft)
-        bullet_list.append(Bullet('bullet.png', player.x, player.y, 'L'))
+        player.shoot('bullet.png', bullet_list, 'L')
 
     elif keys[pygame.K_RIGHT]:
         player.turn(PLayerRight)
-        bullet_list.append(Bullet('bullet.png', player.x, player.y, 'R'))
+        player.shoot('bullet.png', bullet_list, 'R')
 
     elif keys[pygame.K_UP]:
         player.turn(PLayerUP)
-        bullet_list.append(Bullet('bullet.png', player.x, player.y, 'U'))
+        player.shoot('bullet.png', bullet_list, 'U')
+        
 
     elif keys[pygame.K_DOWN]:
         player.turn(PLayerDown)
-        bullet_list.append(Bullet('bullet.png', player.x, player.y, 'D'))
+        player.shoot('bullet.png', bullet_list, 'D')
 
-    elif keys[pygame.K_ESCAPE]:
+    # Should always be called in the main loop 
+    player.handle_cooldown()
+
+
+    if keys[pygame.K_ESCAPE]:
         # Exit key, press esc to quit
         pygame.quit()
 
+    # Updates the list that was passed // No need for globals
     return bullet_list
 
 def bullet_control(bullet_list: list, surface):
     '''
     Will control the bullets on screen.
-    The game window should be passed as the parameter
+    The game window should be passed as the parameter.
     '''
     for bullet in bullet_list:
         bullet.move()
