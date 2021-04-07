@@ -1,5 +1,5 @@
 import pygame
-from NewClasses import Player, Bullet
+from GameClasses import Player, Bullet
 from GameLoopFunctions import check_events, check_keys, bullet_control, draw_bullets
 
 pygame.init()
