@@ -38,6 +38,12 @@ Ammo system for player:
 ENEMY AND PLAYER HEALTHBARS:
     - Create healthbars that float over the player and the enemies' heads.
 
+
+ANIMATIONS:
+    - All sprites need an animation method.
+    Animation method should take the context as a parameter.
+    The context will decide which animation to play.
+
 '''
 
 
@@ -59,7 +65,8 @@ class Player:
         # Cool down control
         self.cooldown = 25
 
-
+    def animate(self):
+        pass
 
     def draw(self, surface):
         '''
@@ -71,7 +78,6 @@ class Player:
         # This line of code will render the image wherever its x and y positions are
         # NOTE that the position does not describe the center of the image but actually the top-left corner of the image
         self.surface = surface.blit(self.img, (self.x, self.y))
-
 
     def turn(self, img: str):
         '''
