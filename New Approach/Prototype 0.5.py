@@ -20,7 +20,7 @@ speed = 6
 
 # ------------------------------------------
 # Player Object
-player = Player('minichief.png', WIDTH/2, HEIGHT/2)
+player = Player('New Approach\Images\minichief.png', WIDTH/2, HEIGHT/2)
 # ------------------------------------------
 
 # ------------------------------------------

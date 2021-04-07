@@ -25,10 +25,10 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
     '''
 
     # Variables for player image
-    PLayerRight = 'ArrowR.png'
-    PLayerLeft = 'ArrowL.png'
-    PLayerUP = 'ArrowU.png'
-    PLayerDown = 'ArrowD.png'
+    PLayerRight = 'New Approach\Images\ArrowR.png'
+    PLayerLeft = 'New Approach\Images\ArrowL.png'
+    PLayerUP = 'New Approach\Images\ArrowU.png'
+    PLayerDown = 'New Approach\Images\ArrowD.png'
 
 
     keys = pygame.key.get_pressed()
@@ -48,20 +48,20 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
     # Direction Controls: Turns player // Bullets need more images
     if keys[pygame.K_LEFT]:
         player.turn(PLayerLeft)
-        player.shoot('bullet.png', bullet_list, 'L')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'L')
 
     elif keys[pygame.K_RIGHT]:
         player.turn(PLayerRight)
-        player.shoot('bullet.png', bullet_list, 'R')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'R')
 
     elif keys[pygame.K_UP]:
         player.turn(PLayerUP)
-        player.shoot('bullet.png', bullet_list, 'U')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'U')
         
 
     elif keys[pygame.K_DOWN]:
         player.turn(PLayerDown)
-        player.shoot('bullet.png', bullet_list, 'D')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'D')
 
     # Should always be called in the main loop 
     player.handle_cooldown()
