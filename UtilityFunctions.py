@@ -1,5 +1,5 @@
 import pygame
-from NewClasses import Player, Bullet
+from GameClasses import Player, Bullet
 '''
 For the purposes of this program, some variables will need to be set.
 '''
@@ -25,10 +25,10 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
     '''
 
     # Variables for player image
-    PLayerRight = 'New Approach\Images\ArrowR.png'
-    PLayerLeft = 'New Approach\Images\ArrowL.png'
-    PLayerUP = 'New Approach\Images\ArrowU.png'
-    PLayerDown = 'New Approach\Images\ArrowD.png'
+    PLayerRight = 'Assets\Player\IDLE\PlayerRightIDLE.png'
+    PLayerLeft = 'Assets\Player\IDLE\PlayerLeftIDLE.png'
+    PLayerUP = 'Assets\Player\IDLE\PlayerUpIDLE.png'
+    PLayerDown = 'Assets\Player\IDLE\PlayerDownIDLE.png'
 
 
     keys = pygame.key.get_pressed()

@@ -1,6 +1,6 @@
 import pygame
 from GameClasses import Player, Bullet
-from GameLoopFunctions import check_events, check_keys, bullet_control, draw_bullets
+from UtilityFunctions import check_events, check_keys, bullet_control, draw_bullets
 
 pygame.init()
 
@@ -20,7 +20,7 @@ speed = 6
 
 # ------------------------------------------
 # Player Object
-player = Player('New Approach\Images\minichief.png', WIDTH/2, HEIGHT/2)
+player = Player('Assets\Player\IDLE\PlayerDownIDLE.png', WIDTH/2, HEIGHT/2)
 # ------------------------------------------
 
 # ------------------------------------------
