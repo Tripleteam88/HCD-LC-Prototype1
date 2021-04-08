@@ -59,7 +59,10 @@ class Player:
         self.img = pygame.image.load(img)
 
         # Animation control // Direction // Single Letter // Starts as Down
-        self.direction = 'D'
+        self.direction = 'D'    # Starting direction of the player
+        # Animation Frame counter
+        self.frame_counter = 0  # Used to count frames per animation
+        # Movement variables // Are True when the player moves
         self.up = False
         self.right = False
         self.left = False
@@ -89,25 +92,41 @@ class Player:
         **STILL IN DEVELOPMENT**
         
         '''
-        # To animate, the player image will need to be changed according to the frame rate
-        # This method does not need to draw, it only needs to change the image at certain time intervals
-        
-        
-        # This piece of code iterates over the animation list 
-        # It continues to the next iteration in the list after the player moves for X amount of frames
-        if self.right == True:
-            iteam = 0
-            if self.animate_time != 0:
-                self.animate_time -= 1 
-            if self.animate_time == 0 and iteam != len(animation):
-                self.animate_time = self.animation_speed
-                iteam += 1
-        
-                # Sets the player image to the desired image for the animation
-                self.img = animation[iteam]
+        # Iterate over a list of images to animate
+        # Only iterate after N amount of frames //  Determined by frame counter
+        # Every N frames, the index should increase. If it hits the list limit it should reset
+        # Use frame counter to count
+        self.frame_counter = 0
+        self.total_images = len(animation)
+        self.image_index = 0
+        self.frames_per_image = 7
+        ##total_frames = total_images * frames_per_image  # Each image will hold for N amount of  frames 
 
+        # The animation is set here
+        self.img = animation[self.image_index]
+
+
+
+        # Count frames
+        if self.frame_counter < self.frames_per_image:
+            # Will add 1 to the value of the frame counter
+            # This is done once per frame
+            self.frame_counter += 1
+            self.img = self.img # Image is not changed
+
+        if self.frame_counter == self.frames_per_image and self.image_index < self.total_images:
+            # If the time limit for the image in the animation is reached
+            # The frame counter will reset and the next image will be played
+            self.frame_counter = 0
+            self.image_index += 1
+
+        print(self.frame_counter)
+        print(self.image_index)
 
         # It is possible that there is a conflicting method that keeps reseting the player image
+        # NOTE: I think i'm gonna need a lot more class variables
+        # I think what is happening is that my variable values are not being saved into the next frame
+        # My whole movement system may need a rework
         return animation
 
 
@@ -128,9 +147,8 @@ class Player:
         It does this by changing the player's image with whatever image is passed as a parameter.
         '''
         
-        
-        
-        self.img = pygame.image.load(img)
+    
+        ##self.img = pygame.image.load(img)
         self.direction = direction
         
         

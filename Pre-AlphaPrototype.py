@@ -79,10 +79,6 @@ def main():
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
-        print('Up:', player.up)
-        print('Down:', player.down)
-        print('Left:', player.left)
-        print('Right:', player.right)
         draw()
 
 main()

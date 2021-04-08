@@ -55,20 +55,20 @@ def controls(player: Player, bullet_list: list, speed: int, surface, animations:
     # Movement controls // Speed parameter is the speed of the player
     if keys[pygame.K_a]:
         player.left = True
-        player.turn(PLayerLeft, 'L')
+        ##player.turn(PLayerLeft, 'L')
         player.x -= speed
     if keys[pygame.K_d]:
         player.right = True
-        player.turn(PLayerRight, 'R')
+        ##player.turn(PLayerRight, 'R')
         player.Move('R', animations)
         player.x += speed
     if keys[pygame.K_w]:
         player.up = True
-        player.turn(PLayerUP, 'U')
+        ##player.turn(PLayerUP, 'U')
         player.y -= speed
     if keys[pygame.K_s]:
         player.down = True
-        player.turn(PLayerDown, 'D')
+        ##player.turn(PLayerDown, 'D')
         player.y += speed
     
 
