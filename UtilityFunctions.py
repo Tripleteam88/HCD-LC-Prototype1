@@ -19,10 +19,12 @@ def check_events():
             pygame.quit()
 
 
-def check_keys(player: Player, bullet_list: list, speed: int, surface):
+def controls(player: Player, bullet_list: list, speed: int, surface, animations: list):
     '''
     This function will check the keys pressed and control what those keys do
     '''
+    # animations is a temporary parameter 
+
 
     # Variables for player image
     PLayerRight = 'Assets\Player\IDLE\PlayerRightIDLE.png'
@@ -35,33 +37,38 @@ def check_keys(player: Player, bullet_list: list, speed: int, surface):
 
     # Movement controls // Speed parameter is the speed of the player
     if keys[pygame.K_a]:
+        player.turn(PLayerLeft, 'L')
         player.x -= speed
     if keys[pygame.K_d]:
+        player.turn(PLayerRight, 'R')
+        player.animate('R', animations)
         player.x += speed
     if keys[pygame.K_w]:
+        player.turn(PLayerUP, 'U')
         player.y -= speed
     if keys[pygame.K_s]:
+        player.turn(PLayerDown, 'D')
         player.y += speed
 
 
  # TODO: store bullet string in a variable with a new function parameter 
     # Direction Controls: Turns player // Bullets need more images
     if keys[pygame.K_LEFT]:
-        player.turn(PLayerLeft)
-        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'L')
+        player.turn(PLayerLeft, 'L')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list)
 
     elif keys[pygame.K_RIGHT]:
-        player.turn(PLayerRight)
-        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'R')
+        player.turn(PLayerRight, 'R')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list)
 
     elif keys[pygame.K_UP]:
-        player.turn(PLayerUP)
-        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'U')
+        player.turn(PLayerUP, 'U')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list)
         
 
     elif keys[pygame.K_DOWN]:
-        player.turn(PLayerDown)
-        player.shoot('New Approach\Images\Bullet.png', bullet_list, 'D')
+        player.turn(PLayerDown, 'D')
+        player.shoot('New Approach\Images\Bullet.png', bullet_list)
 
     # Should always be called in the main loop 
     player.handle_cooldown()

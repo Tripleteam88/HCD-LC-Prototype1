@@ -1,6 +1,6 @@
 import pygame
 from GameClasses import Player, Bullet
-from UtilityFunctions import check_events, check_keys, bullet_control, draw_bullets
+from UtilityFunctions import check_events, controls, bullet_control, draw_bullets
 
 pygame.init()
 
@@ -21,6 +21,13 @@ speed = 6
 # ------------------------------------------
 # Player Object
 player = Player('Assets\Player\IDLE\PlayerDownIDLE.png', WIDTH/2, HEIGHT/2)
+# Player animations
+WalkRight = [pygame.image.load('Assets\Player\Animations\Right\R1.png'), pygame.image.load('Assets\Player\Animations\Right\R2.png'), pygame.image.load('Assets\Player\Animations\Right\R3.png'),
+pygame.image.load('Assets\Player\Animations\Right\R4.png'), pygame.image.load('Assets\Player\Animations\Right\R5.png'), pygame.image.load('Assets\Player\Animations\Right\R6.png'),
+pygame.image.load('Assets\Player\Animations\Right\R7.png'), pygame.image.load('Assets\Player\Animations\Right\R8.png')]
+WalkLeft = []
+WalkDown = []
+WalkUp = []
 # ------------------------------------------
 
 # ------------------------------------------
@@ -41,7 +48,7 @@ BLUE = (0, 0, 255)
 
 # Main draw function
 def draw():
-    WIN.fill(BLACK)
+    WIN.fill(BLUE)
 
     draw_bullets(bullet_list, WIN)
     player.draw(WIN)
@@ -59,19 +66,20 @@ def main():
     run = True
     while run:
         clock.tick(FPS)
-        # This for loop will check the current events that are happening
+    
+
 
         # Custom function that checks events
         # Currently will only close the window if user kills the window
         check_events()
 
         # Custom function that checks pressed keys // Implementing controls
-        check_keys(player, bullet_list, speed, WIN)
+        controls(player, bullet_list, speed, WIN, WalkRight)
 
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
-        print(player.cooldown)
+        print(player.img)
         draw()
 
 main()

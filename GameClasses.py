@@ -58,6 +58,13 @@ class Player:
         # Loads the chosen image so it can be rendered
         self.img = pygame.image.load(img)
 
+        # Animation control // Direction // Single Letter // Starts as Down
+        self.direction = 'D'
+        # Animation speed and timer 
+        self.animation_speed = 16
+        self.animate_time = 16 #Each animation will appear for these many frames
+
+
         # x and y positions of the plauer
         self.x = x
         self.y = y
@@ -65,8 +72,35 @@ class Player:
         # Cool down control
         self.cooldown = 25
 
-    def animate(self):
-        pass
+    def animate(self, context: str, animation: list):
+        '''
+        The player animation method takes the context of the desired animation as a parameter.
+        This context may be, direction of movement, whether or not the player is hurt or dead, etc.
+        This method also needs a list, containing the desired animation's images.
+        
+        **STILL IN DEVELOPMENT**
+        
+        '''
+        # To animate, the player image will need to be changed according to the frame rate
+        # This method does not need to draw, it only needs to change the image at certain time intervals
+        
+        
+        # This piece of code iterates over the animation list 
+        # It continues to the next iteration in the list after the player moves for X amount of frames
+        iteam = 0
+        if self.animate_time != 0:
+            self.animate_time -= 1 
+        if self.animate_time == 0 and iteam != len(animation):
+            self.animate_time = self.animation_speed
+            iteam += 1
+        
+        # Sets the player image to the desired image for the animation
+        self.img = animation[iteam]
+
+
+        # It is possible that there is a conflicting method that keeps reseting the player image
+        return animation
+
 
     def draw(self, surface):
         '''
@@ -79,27 +113,30 @@ class Player:
         # NOTE that the position does not describe the center of the image but actually the top-left corner of the image
         self.surface = surface.blit(self.img, (self.x, self.y))
 
-    def turn(self, img: str):
+    def turn(self, img: str, direction: str):
         '''
         This method controls the direction that the player will be facing.
         It does this by changing the player's image with whatever image is passed as a parameter.
         '''
         self.img = pygame.image.load(img)
-
+        self.direction = direction
         pass
 
-    def shoot(self, bullet_image: str,bullet_list: list, direction: str):
+    def shoot(self, bullet_image: str,bullet_list: list):
         '''
         This method will be used to add bullets to the bullets list.
         This will replace the current rudementary shooting system and stop spam shooting.
         '''
+
+
+        
 
         # Direction string should follow game logic// Currently single letter
         # bullet_image string should be the image path to be used on the bullet
         if self.cooldown == 25:
             
             
-            bullet_list.append(Bullet(bullet_image, self.x, self.y, direction))
+            bullet_list.append(Bullet(bullet_image, self.x, self.y, self.direction))
             
             # Resets cooldown time to 0// VALUE IS NOT FINAL
             self.cooldown = 0
@@ -139,6 +176,9 @@ class Bullet:
             # Sets the image of the bullet//Chose right one for each direction
             self.img = pygame.image.load(img)
             self.direction = direction
+
+        def animate(self, context):
+            pass
 
         def move(self):
             '''
@@ -189,7 +229,8 @@ class Enemy:
         # Enemy Health // NOT FINAL
         self.health = 300
 
-        
+    def animate(self, context: str):
+        pass
 
     def move(self):
         '''
