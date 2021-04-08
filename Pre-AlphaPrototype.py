@@ -51,7 +51,7 @@ def draw():
     WIN.fill(BLUE)
 
     draw_bullets(bullet_list, WIN)
-    player.draw(WIN)
+    player.Draw(WIN)
 
     pygame.display.update()
 
@@ -71,7 +71,7 @@ def main():
 
         # Custom function that checks events
         # Currently will only close the window if user kills the window
-        check_events()
+        check_events(player)
 
         # Custom function that checks pressed keys // Implementing controls
         controls(player, bullet_list, speed, WIN, WalkRight)
@@ -79,7 +79,10 @@ def main():
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
-        print(player.img)
+        print('Up:', player.up)
+        print('Down:', player.down)
+        print('Left:', player.left)
+        print('Right:', player.right)
         draw()
 
 main()

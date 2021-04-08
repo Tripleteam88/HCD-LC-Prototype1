@@ -9,14 +9,31 @@ For the purposes of this program, some variables will need to be set.
 
 
 
-def check_events():
+def check_events(player: Player):
     '''
     DESCRIPTION MISSING
+    
+    May be updated to handle key_up events.
+    Expand to include player object
     '''
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        
+        # Key up, event control
+        if event.type == pygame.KEYUP:
+            # Check released keys
+            if event.key == pygame.K_w:
+                player.up = False
+            if event.key == pygame.K_s:
+                player.down = False
+            if event.key == pygame.K_d:
+                player.right = False
+            if event.key == pygame.K_a:
+                player.left = False
+
+    return player
 
 
 def controls(player: Player, bullet_list: list, speed: int, surface, animations: list):
@@ -37,19 +54,23 @@ def controls(player: Player, bullet_list: list, speed: int, surface, animations:
 
     # Movement controls // Speed parameter is the speed of the player
     if keys[pygame.K_a]:
+        player.left = True
         player.turn(PLayerLeft, 'L')
         player.x -= speed
     if keys[pygame.K_d]:
+        player.right = True
         player.turn(PLayerRight, 'R')
-        player.animate('R', animations)
+        player.Move('R', animations)
         player.x += speed
     if keys[pygame.K_w]:
+        player.up = True
         player.turn(PLayerUP, 'U')
         player.y -= speed
     if keys[pygame.K_s]:
+        player.down = True
         player.turn(PLayerDown, 'D')
         player.y += speed
-
+    
 
  # TODO: store bullet string in a variable with a new function parameter 
     # Direction Controls: Turns player // Bullets need more images
@@ -65,7 +86,6 @@ def controls(player: Player, bullet_list: list, speed: int, surface, animations:
         player.turn(PLayerUP, 'U')
         player.shoot('New Approach\Images\Bullet.png', bullet_list)
         
-
     elif keys[pygame.K_DOWN]:
         player.turn(PLayerDown, 'D')
         player.shoot('New Approach\Images\Bullet.png', bullet_list)

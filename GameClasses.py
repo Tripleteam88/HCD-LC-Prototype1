@@ -60,6 +60,11 @@ class Player:
 
         # Animation control // Direction // Single Letter // Starts as Down
         self.direction = 'D'
+        self.up = False
+        self.right = False
+        self.left = False
+        self.down = False
+
         # Animation speed and timer 
         self.animation_speed = 16
         self.animate_time = 16 #Each animation will appear for these many frames
@@ -72,8 +77,11 @@ class Player:
         # Cool down control
         self.cooldown = 25
 
-    def animate(self, context: str, animation: list):
+    def Move(self, context: str, animation: list):
         '''
+        Method is called on keypress.
+
+
         The player animation method takes the context of the desired animation as a parameter.
         This context may be, direction of movement, whether or not the player is hurt or dead, etc.
         This method also needs a list, containing the desired animation's images.
@@ -87,22 +95,23 @@ class Player:
         
         # This piece of code iterates over the animation list 
         # It continues to the next iteration in the list after the player moves for X amount of frames
-        iteam = 0
-        if self.animate_time != 0:
-            self.animate_time -= 1 
-        if self.animate_time == 0 and iteam != len(animation):
-            self.animate_time = self.animation_speed
-            iteam += 1
+        if self.right == True:
+            iteam = 0
+            if self.animate_time != 0:
+                self.animate_time -= 1 
+            if self.animate_time == 0 and iteam != len(animation):
+                self.animate_time = self.animation_speed
+                iteam += 1
         
-        # Sets the player image to the desired image for the animation
-        self.img = animation[iteam]
+                # Sets the player image to the desired image for the animation
+                self.img = animation[iteam]
 
 
         # It is possible that there is a conflicting method that keeps reseting the player image
         return animation
 
 
-    def draw(self, surface):
+    def Draw(self, surface):
         '''
         Draws/Renders the player image over another surface(Should be draw on window surface)
         The reason that the player is not draw when it is instantiated is because it allows me to control when the player is drawn
@@ -118,9 +127,13 @@ class Player:
         This method controls the direction that the player will be facing.
         It does this by changing the player's image with whatever image is passed as a parameter.
         '''
+        
+        
+        
         self.img = pygame.image.load(img)
         self.direction = direction
-        pass
+        
+        
 
     def shoot(self, bullet_image: str,bullet_list: list):
         '''
