@@ -58,6 +58,7 @@ def main():
     # Main loop will is where all game logic is handled
     run = True
     while run:
+
         clock.tick(FPS)
         # This for loop will check the current events that are happening
 
@@ -71,7 +72,11 @@ def main():
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
+<<<<<<< Updated upstream:Pre-AlphaPrototype.py
         print(player.cooldown)
+=======
+        print(player.direction)
+>>>>>>> Stashed changes:main.py
         draw()
 
 main()

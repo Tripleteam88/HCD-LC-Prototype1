@@ -58,6 +58,36 @@ class Player:
         # Loads the chosen image so it can be rendered
         self.img = pygame.image.load(img)
 
+<<<<<<< Updated upstream
+=======
+        # Direction // Animation and movement control // Single Letter // Starts as Down
+        self.direction = 'D'    # Starting direction of the player
+    
+        
+        # Player idle images
+        self.img_left = 'Assets\Player\IDLE\PlayerLeftIDLE.png'
+        self.img_right = 'Assets\Player\IDLE\PlayerRightIDLE.png'
+        self.img_down = 'Assets\Player\IDLE\PlayerDownIDLE.png'
+        self.img_up = 'Assets\Player\IDLE\PlayerUpIDLE.png'
+
+        # Animation controls // Represnts what direction the player is in motion towards
+        self.left = False
+        self.right = False
+        self.down = False
+        self.up = False
+
+        # Animation lists
+        self.right_animation = [pygame.image.load('Assets\Player\Animations\Right\R1.png'), 
+                                pygame.image.load('Assets\Player\Animations\Right\R2.png'), 
+                                pygame.image.load('Assets\Player\Animations\Right\R3.png'),
+                                pygame.image.load('Assets\Player\Animations\Right\R4.png'), 
+                                pygame.image.load('Assets\Player\Animations\Right\R5.png'), 
+                                pygame.image.load('Assets\Player\Animations\Right\R6.png'),
+                                pygame.image.load('Assets\Player\Animations\Right\R7.png'), 
+                                pygame.image.load('Assets\Player\Animations\Right\R8.png')]
+
+
+>>>>>>> Stashed changes
         # x and y positions of the plauer
         self.x = x
         self.y = y
@@ -65,54 +95,157 @@ class Player:
         # Cool down control
         self.cooldown = 25
 
+<<<<<<< Updated upstream
     def animate(self):
         pass
 
     def draw(self, surface):
+=======
+
+    def Walking(self):
         '''
-        Draws/Renders the player image over another surface(Should be draw on window surface)
-        The reason that the player is not draw when it is instantiated is because it allows me to control when the player is drawn
-        as well as what it is drawn over and what is draw over it. Effectively controlling the "layer" that the player is drawn on.
+        This method triggers the animation variables to True.
+        It should be called only when the user is pressing down on a key.
+        '''
+        if self.direction == 'D':
+            # If player is facing down
+            self.down =True
+
+        if self.direction == 'U':
+            # If player is facing up
+            self.up = True
+            
+        if self.direction == 'L':
+            # If player is facing left
+            self.left = True
+                
+        if self.direction == 'R':
+            # If player is facing right
+            self.right = True
+
+    def Halt(self):
+>>>>>>> Stashed changes
+        '''
+        The animation contorl values  return to false.
+        Image set to the idle(for current direction) once the user releases the key.
+        This method should be called when the user realeases a key.
         '''
 
+<<<<<<< Updated upstream
         # This line of code will render the image wherever its x and y positions are
         # NOTE that the position does not describe the center of the image but actually the top-left corner of the image
         self.surface = surface.blit(self.img, (self.x, self.y))
 
     def turn(self, img: str):
+=======
+        if self.direction == 'U':
+            self.up = False
+            self.img = pygame.image.load(self.img_up)
+            
+        if self.direction == 'D':
+            self.down = False
+            self.img = pygame.image.load(self.img_down)
+            
+        if self.direction == 'R':
+            self.right = False
+            self.img = pygame.image.load(self.img_right)
+            
+        if self.direction == 'L':
+            self.left = False
+            self.img = pygame.image.load(self.img_left)
+    
+    def Turn(self, direction: str):
+>>>>>>> Stashed changes
         '''
-        This method controls the direction that the player will be facing.
-        It does this by changing the player's image with whatever image is passed as a parameter.
+        This method updates the direction that the player is facing.
         '''
+<<<<<<< Updated upstream
         self.img = pygame.image.load(img)
 
         pass
 
     def shoot(self, bullet_image: str,bullet_list: list, direction: str):
+=======
+        
+        self.direction = direction
+    
+    def Animate(self):
+        '''
+        DESCRIPTION MISSING
+
+        '''
+        # Get it working with right animation first.
+        
+        if self.direction == 'R' and self.right == True:
+            # Excecutes when the player is moving left
+            
+            
+            pass
+            
+        
+        
+        pass
+
+        
+
+    def Shoot(self, bullet_image: str,bullet_list: list):
+>>>>>>> Stashed changes
         '''
         This method will be used to add bullets to the bullets list.
         This will replace the current rudementary shooting system and stop spam shooting.
         '''
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         # Direction string should follow game logic// Currently single letter
         # bullet_image string should be the image path to be used on the bullet
         if self.cooldown == 25:
             
+<<<<<<< Updated upstream
             
             bullet_list.append(Bullet(bullet_image, self.x, self.y, direction))
+=======
+            bullet_list.append(Bullet(bullet_image, self.x, self.y, self.direction))
+>>>>>>> Stashed changes
             
             # Resets cooldown time to 0// VALUE IS NOT FINAL
             self.cooldown = 0
         
         return bullet_list
         
-    def handle_cooldown(self):
+    def HandleCooldown(self):
         '''
         This function should be called after the shoot function.
         '''
         if self.cooldown < 25:
             self.cooldown += 1
 
+
+    def Update(self):
+        '''
+        Updates important player related variables from frame to frame. 
+        '''
+
+        # Movement controls
+        
+        
+        
+        
+        pass
+
+
+    def Draw(self, surface):
+            '''
+            Draws/Renders the player image over another surface(Should be draw on window surface)
+            The reason that the player is not draw when it is instantiated is because it allows me to control when the player is drawn
+            as well as what it is drawn over and what is draw over it. Effectively controlling the "layer" that the player is drawn on.
+            '''
+
+            # This line of code will render the image wherever its x and y positions are
+            # NOTE that the position does not describe the center of the image but actually the top-left corner of the image
+            self.surface = surface.blit(self.img, (self.x, self.y))
 
 
 
@@ -136,10 +269,18 @@ class Bullet:
             self.x = x
             self.y = y
 
-            # Sets the image of the bullet//Chose right one for each direction
+            # Sets the image of the bullet//Chose right one for each direction // 'D', 'U'. 'L', 'R'
             self.img = pygame.image.load(img)
             self.direction = direction
 
+<<<<<<< Updated upstream
+=======
+            
+
+        def animate(self, context):
+            pass
+
+>>>>>>> Stashed changes
         def move(self):
             '''
             This method handles the movement of each bullet.
