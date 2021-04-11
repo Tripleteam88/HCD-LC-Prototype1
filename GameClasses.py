@@ -120,6 +120,9 @@ class Player:
             self.frame_counter = 0
             self.image_index += 1
 
+            # Remember to reset image index after total 
+            # Use clock function
+
         print(self.frame_counter)
         print(self.image_index)
 
