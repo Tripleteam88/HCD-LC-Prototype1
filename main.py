@@ -1,6 +1,6 @@
 import pygame
 from GameClasses import Player, Bullet
-from GameLoopFunctions import check_events, check_keys, bullet_control, draw_bullets
+from UtilityFunctions import check_events, check_keys, bullet_control, draw_bullets
 
 pygame.init()
 
@@ -72,11 +72,11 @@ def main():
         # Bullet control function // Loops through bullets and applies changes
         if bullet_list != []:
             bullet_control(bullet_list, WIN)
-<<<<<<< Updated upstream:Pre-AlphaPrototype.py
+
         print(player.cooldown)
-=======
+
         print(player.direction)
->>>>>>> Stashed changes:main.py
+
         draw()
 
 main()

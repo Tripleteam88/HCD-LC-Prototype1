@@ -58,8 +58,7 @@ class Player:
         # Loads the chosen image so it can be rendered
         self.img = pygame.image.load(img)
 
-<<<<<<< Updated upstream
-=======
+
         # Direction // Animation and movement control // Single Letter // Starts as Down
         self.direction = 'D'    # Starting direction of the player
     
@@ -87,7 +86,7 @@ class Player:
                                 pygame.image.load('Assets\Player\Animations\Right\R8.png')]
 
 
->>>>>>> Stashed changes
+
         # x and y positions of the plauer
         self.x = x
         self.y = y
@@ -95,12 +94,12 @@ class Player:
         # Cool down control
         self.cooldown = 25
 
-<<<<<<< Updated upstream
+
     def animate(self):
         pass
 
     def draw(self, surface):
-=======
+
 
     def Walking(self):
         '''
@@ -124,20 +123,20 @@ class Player:
             self.right = True
 
     def Halt(self):
->>>>>>> Stashed changes
+
         '''
         The animation contorl values  return to false.
         Image set to the idle(for current direction) once the user releases the key.
         This method should be called when the user realeases a key.
         '''
 
-<<<<<<< Updated upstream
+
         # This line of code will render the image wherever its x and y positions are
         # NOTE that the position does not describe the center of the image but actually the top-left corner of the image
         self.surface = surface.blit(self.img, (self.x, self.y))
 
     def turn(self, img: str):
-=======
+
         if self.direction == 'U':
             self.up = False
             self.img = pygame.image.load(self.img_up)
@@ -155,17 +154,17 @@ class Player:
             self.img = pygame.image.load(self.img_left)
     
     def Turn(self, direction: str):
->>>>>>> Stashed changes
+
         '''
         This method updates the direction that the player is facing.
         '''
-<<<<<<< Updated upstream
+
         self.img = pygame.image.load(img)
 
         pass
 
     def shoot(self, bullet_image: str,bullet_list: list, direction: str):
-=======
+
         
         self.direction = direction
     
@@ -189,26 +188,26 @@ class Player:
         
 
     def Shoot(self, bullet_image: str,bullet_list: list):
->>>>>>> Stashed changes
+
         '''
         This method will be used to add bullets to the bullets list.
         This will replace the current rudementary shooting system and stop spam shooting.
         '''
-<<<<<<< Updated upstream
 
-=======
+
+
         
->>>>>>> Stashed changes
+
         # Direction string should follow game logic// Currently single letter
         # bullet_image string should be the image path to be used on the bullet
         if self.cooldown == 25:
             
-<<<<<<< Updated upstream
+
             
             bullet_list.append(Bullet(bullet_image, self.x, self.y, direction))
-=======
+
             bullet_list.append(Bullet(bullet_image, self.x, self.y, self.direction))
->>>>>>> Stashed changes
+
             
             # Resets cooldown time to 0// VALUE IS NOT FINAL
             self.cooldown = 0
@@ -273,14 +272,13 @@ class Bullet:
             self.img = pygame.image.load(img)
             self.direction = direction
 
-<<<<<<< Updated upstream
-=======
+
             
 
         def animate(self, context):
             pass
 
->>>>>>> Stashed changes
+
         def move(self):
             '''
             This method handles the movement of each bullet.
