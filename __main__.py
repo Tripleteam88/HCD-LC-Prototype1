@@ -1,5 +1,6 @@
 import pygame
-from engine import *
+import engine
+
 
 pygame.init()
 pygame.display.init()
@@ -64,7 +65,7 @@ def main():
     while running:
         clock.tick(FPS) # Sets game framerate
 
-        window_event()
+        engine.window_event()
 
         pass
 
