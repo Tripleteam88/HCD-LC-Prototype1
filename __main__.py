@@ -1,5 +1,5 @@
 import pygame
-import engine
+import engine   # No astrisk so engine functions can be easily identified 
 
 
 pygame.init()
