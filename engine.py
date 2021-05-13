@@ -40,6 +40,24 @@ class Player(pygame.sprite.Sprite):
         '''
         Controls player behaviour.
 
+        This method is called once per frame and will manage player logic.
+        The controls method is only called here so will run once per frame as well.
+        This method will not handle player movement or combat directly, instead it will "coordinate" other methods that do so here.
+        Thus encapsulating player logic into one update method. 
+
+        IMPORTANT:
+        DESCRIPTION MISSING
+        '''
+        self.controls()
+
+        pass
+
+    def controls(self):
+        '''
+        Handles the player control logic
+        
+        Only Player movement is controled here.
+
         IMPORTANT:
         DESCRIPTION MISSING
         '''
