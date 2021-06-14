@@ -99,7 +99,7 @@ class Player:
         pass
 
     def draw(self, surface):
-
+        pass
 
     def Walking(self):
         '''

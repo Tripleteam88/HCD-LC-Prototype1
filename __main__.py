@@ -15,8 +15,8 @@ pygame.display.init()
 # WINDOW // Constants should be all caps
 WIDTH = 1000
 HEIGHT = 600
+WIN = pygame.display.set_caption("HCD2: Pre-Alpha 0")
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-WIN = pygame.display.set_caption("HCD2: Pre-Alpha 0.1")
 # ------------------------------------------
 
 
@@ -31,7 +31,12 @@ clock = pygame.time.Clock()
 # ------------------------------------------
 # Player object ----------------------------
 # ------------------------------------------
-pass
+# Player Variables -------------------------
+img = 'Assets\Player\IDLE\PlayerDownIDLE.png'
+x = 100
+y = 100
+# ------------------------------------------
+player = engine.Player(img, x, y)
 # ------------------------------------------
 
 
@@ -54,6 +59,12 @@ BLUE = (0, 0, 255)
 # \\\\\\\\\\\\\\\\ Initial Game Variables: END /////////////////
 # ==============================================================
 
+def draw():
+    player.draw(WIN)
+    
+    
+    pygame.display.update()
+
 def main():
     """
     The main game function.
@@ -64,13 +75,15 @@ def main():
     running = True  # Main game loop
     while running:
         clock.tick(FPS) # Sets game framerate
-
         engine.window_event()
+        events = pygame.event.get()    # Update the events list
+        player.update(events)
+        print(player.events)
+        draw()
+        
 
-        pass
 
 
-
-    pass
+    
 
 main()  # Main game function is called
