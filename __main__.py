@@ -32,11 +32,10 @@ clock = pygame.time.Clock()
 # Player object ----------------------------
 # ------------------------------------------
 # Player Variables -------------------------
-img = 'Assets\Player\IDLE\PlayerDownIDLE.png'
 x = 100
 y = 100
 # ------------------------------------------
-player = engine.Player(img, x, y)
+player = engine.Player(x, y)
 # ------------------------------------------
 
 
@@ -71,7 +70,7 @@ def main():
     running = True  # Main game loop
     while running:
         clock.tick(FPS) # Sets game framerate
-        WIN.fill(BLACK)     # Clears screen
+        WIN.fill(BLACK)     # Clears screen by filling it with a background colour
 
         player.draw(WIN)
         player.update()

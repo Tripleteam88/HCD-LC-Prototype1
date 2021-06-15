@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
     The Player object is a type of sprite.
     '''
 
-    def __init__(self, img, x, y):
+    def __init__(self, x, y):
         '''
         Player class takes all the same parameters as a normal sprite.
         '''
@@ -25,18 +25,6 @@ class Player(pygame.sprite.Sprite):
         # Creates a sprite using the instance of the player
         pygame.sprite.Sprite.__init__(self)
 
-        # -----------------------------------------
-        # Sprite parameters -----------------------
-        # -----------------------------------------
-        # Player Rect -----------------------------
-        self.image = pygame.image.load(img).convert()
-        # Automatically sets dimensions from image
-        self.rect = self.image.get_rect()
-        # Position parameters
-        self.rect.x = x
-        self.rect.y = y
-        # Suface 
-        self.surface = pygame.Surface((self.rect.width, self.rect.height))
         # -----------------------------------------
         # Movement and directional Parameters -----
         # -----------------------------------------
@@ -53,7 +41,25 @@ class Player(pygame.sprite.Sprite):
         self.facing_right = False
         self.facing_left = False
         # -----------------------------------------
-
+        # Images (Manually defined) ---------------
+        # -----------------------------------------
+        self.image_down = pygame.image.load('Assets\Player\IDLE\PlayerDownIDLE.png').convert()
+        self.image_up = pygame.image.load('Assets\Player\IDLE\PlayerUpIDLE.png').convert()
+        self.image_left = pygame.image.load('Assets\Player\IDLE\PlayerLeftIDLE.png').convert()
+        self.image_right = pygame.image.load('Assets\Player\IDLE\PlayerRightIDLE.png').convert()
+        # -----------------------------------------
+        # -----------------------------------------
+        # Sprite parameters -----------------------
+        # -----------------------------------------
+        # Player Rect -----------------------------
+        self.image = self.image_down
+        # Automatically sets dimensions from image
+        self.rect = self.image.get_rect()
+        # Position parameters
+        self.rect.x = x
+        self.rect.y = y
+        # Suface 
+        self.surface = pygame.Surface((self.rect.width, self.rect.height))
     
     def draw(self, WINDOW):
        WINDOW.blit(self.image, (self.rect.x, self.rect.y))
@@ -73,10 +79,10 @@ class Player(pygame.sprite.Sprite):
         DESCRIPTION MISSING
         '''
 
-
-        ##self.controls()
+        # Manages game events (including player controls)
         self.event_control()
-        # Movement
+
+        # Movement 
         if self.moving_up == True:
             self.rect.y -= self.speed
         if self.moving_down == True:
@@ -85,14 +91,23 @@ class Player(pygame.sprite.Sprite):
             self.rect.x -= self.speed
         if self.moving_right == True:
             self.rect.x += self.speed
+        # Direction
+        if self.facing_up == True:
+            self.image = self.image_up
+        if self.facing_down == True:
+            self.image = self.image_down
+        if self.facing_left == True:
+            self.image = self.image_left
+        if self.facing_right == True:
+            self.image = self.image_right
+
 
 
     def event_control(self):
         """
         
         """
-        # I think the events are all being handled by the window event control function.
-        # I am going to try using only 1 event for loop in the whole game
+       
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -110,6 +125,29 @@ class Player(pygame.sprite.Sprite):
                 if event.key == pygame.K_d:
                     self.moving_right = True
 
+                # Directional controls
+                if event.key == pygame.K_UP:
+                    self.facing_up = True   # Only true value
+                    self.facing_down = False
+                    self.facing_left = False
+                    self.facing_right = False   
+                if event.key == pygame.K_DOWN:
+                    self.facing_up = False
+                    self.facing_down = True # Only true value
+                    self.facing_left = False
+                    self.facing_right = False
+                if event.key == pygame.K_LEFT:
+                    self.facing_up = False
+                    self.facing_down = False
+                    self.facing_left = True # Only true value
+                    self.facing_right = False   
+                if event.key == pygame.K_RIGHT:
+                    self.facing_up = False
+                    self.facing_down = False
+                    self.facing_left = False 
+                    self.facing_right = True # Only true value                
+
+
             # Keyup controls
             if event.type == pygame.KEYUP:
                 # Movement
@@ -121,66 +159,12 @@ class Player(pygame.sprite.Sprite):
                     self.moving_left = False
                 if event.key == pygame.K_d:
                     self.moving_right = False
-        
+                 
 
 
-            
-
-    def controls(self):
-        '''
-        Handles the player control logic
-        
-        Only Player movement is controled here.
-
-        IMPORTANT:
-        DESCRIPTION MISSING
-        '''
-
-        keys = pygame.key.get_pressed()
-        
-        # Movement Controls -----------------
-        
-        if keys[pygame.K_w]:
-            self.moving_up = True
-        if keys[pygame.K_s]:
-            self.moving_down = True
-        if keys[pygame.K_a]:
-            self.moving_left = True
-        if keys[pygame.K_d]:
-            self.moving_right = True
-        
-        else:
-            self.moving_up = False
-            self.moving_down = False
-            self.moving_left = False
-            self.moving_right = False
-        
-        
-        # Direction controls -----------------
-        
-        if keys[pygame.K_UP]:
-            self.facing_up = True
-        if keys[pygame.K_DOWN]:
-            self.facing_down = True
-        if keys[pygame.K_LEFT]:
-            self.facing_right = True
-        if keys[pygame.K_RIGHT]:
-            self.facing_right == True
-
-        
-        else:
-            self.facing_up = False
-            self.facing_down = False
-            self.facing_left = False
-            self.facing_right = False
-        
-
-                
 
 
-        
-
-
+                    
 # =============================================================================================
 # =============================================================================================
 
@@ -191,11 +175,7 @@ class Player(pygame.sprite.Sprite):
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Game functions ///////////////////////////////////////
 # =============================================================================================
 
-def window_event():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
+
 
 # =============================================================================================
 # =============================================================================================
