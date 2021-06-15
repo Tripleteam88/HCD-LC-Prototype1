@@ -28,13 +28,15 @@ class Player(pygame.sprite.Sprite):
         # -----------------------------------------
         # Sprite parameters -----------------------
         # -----------------------------------------
-        # Player Rect/Surface parameters ----------
+        # Player Rect -----------------------------
         self.image = pygame.image.load(img).convert()
         # Automatically sets dimensions from image
         self.rect = self.image.get_rect()
         # Position parameters
         self.rect.x = x
         self.rect.y = y
+        # Suface 
+        self.surface = pygame.Surface((self.rect.width, self.rect.height))
         # -----------------------------------------
         # Movement and directional Parameters -----
         # -----------------------------------------
@@ -58,7 +60,7 @@ class Player(pygame.sprite.Sprite):
        
         
 
-    def update(self, events):
+    def update(self):
         '''
         Controls player behaviour.
 
@@ -70,12 +72,10 @@ class Player(pygame.sprite.Sprite):
         IMPORTANT:
         DESCRIPTION MISSING
         '''
-        # -----------------------------------------
-        # Event list ------------------------------
-        self.events = events    # Loop through this list for controls
-        # -----------------------------------------
-        self.controls()
-        
+
+
+        ##self.controls()
+        self.event_control()
         # Movement
         if self.moving_up == True:
             self.rect.y -= self.speed
@@ -87,9 +87,44 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += self.speed
 
 
-
-
+    def event_control(self):
+        """
         
+        """
+        # I think the events are all being handled by the window event control function.
+        # I am going to try using only 1 event for loop in the whole game
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+            
+            # Keydown controls 
+            if event.type == pygame.KEYDOWN:
+                # Movement 
+                if event.key == pygame.K_w:
+                    self.moving_up = True
+                if event.key == pygame.K_s:
+                    self.moving_down = True
+                if event.key == pygame.K_a:
+                    self.moving_left = True
+                if event.key == pygame.K_d:
+                    self.moving_right = True
+
+            # Keyup controls
+            if event.type == pygame.KEYUP:
+                # Movement
+                if event.key == pygame.K_w:
+                    self.moving_up = False
+                if event.key == pygame.K_s:
+                    self.moving_down = False
+                if event.key == pygame.K_a:
+                    self.moving_left = False
+                if event.key == pygame.K_d:
+                    self.moving_right = False
+        
+
+
+            
 
     def controls(self):
         '''
@@ -101,55 +136,45 @@ class Player(pygame.sprite.Sprite):
         DESCRIPTION MISSING
         '''
 
-        # ERROR: It looks like none of these conditions are excecuting when they should
-        # Suggestion: Try using specific event instead
-        events = self.events
-
-        for event in events:
+        keys = pygame.key.get_pressed()
+        
         # Movement Controls -----------------
-            # Keydown  Controls
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w:
-                    self.moving_up = True
-                if event.key == pygame.K_s:
-                    self.moving_down = True
-                if event.key == pygame.K_a:
-                    self.moving_left = True
-                if event.key == pygame.K_d:
-                    self.moving_right = True
-            # Key up Controls
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_w:
-                    self.moving_up = False
-                if event.key == pygame.K_s:
-                    self.moving_down = False
-                if event.key == pygame.K_a:
-                    self.moving_left = False
-                if event.key == pygame.K_d:
-                    self.moving_right = False
-                
+        
+        if keys[pygame.K_w]:
+            self.moving_up = True
+        if keys[pygame.K_s]:
+            self.moving_down = True
+        if keys[pygame.K_a]:
+            self.moving_left = True
+        if keys[pygame.K_d]:
+            self.moving_right = True
+        
+        else:
+            self.moving_up = False
+            self.moving_down = False
+            self.moving_left = False
+            self.moving_right = False
+        
+        
         # Direction controls -----------------
-            # Keydown Controls
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    self.facing_up = True
-                if event.key == pygame.K_DOWN:
-                    self.facing_down = True
-                if event.key == pygame.K_LEFT:
-                    self.facing_right = True
-                if event.key == pygame.K_RIGHT:
-                    self.facing_right == True
-            
-            # Key up controls
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_UP:
-                    self.facing_up = False
-                if event.key == pygame.K_DOWN:
-                    self.facing_down = False
-                if event.key == pygame.K_LEFT:
-                    self.facing_left = False
-                if event.key == pygame.K_RIGHT:
-                    self.facing_right = False
+        
+        if keys[pygame.K_UP]:
+            self.facing_up = True
+        if keys[pygame.K_DOWN]:
+            self.facing_down = True
+        if keys[pygame.K_LEFT]:
+            self.facing_right = True
+        if keys[pygame.K_RIGHT]:
+            self.facing_right == True
+
+        
+        else:
+            self.facing_up = False
+            self.facing_down = False
+            self.facing_left = False
+            self.facing_right = False
+        
+
                 
 
 

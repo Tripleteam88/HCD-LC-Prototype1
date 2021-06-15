@@ -59,11 +59,7 @@ BLUE = (0, 0, 255)
 # \\\\\\\\\\\\\\\\ Initial Game Variables: END /////////////////
 # ==============================================================
 
-def draw():
-    player.draw(WIN)
-    
-    
-    pygame.display.update()
+
 
 def main():
     """
@@ -75,11 +71,19 @@ def main():
     running = True  # Main game loop
     while running:
         clock.tick(FPS) # Sets game framerate
-        engine.window_event()
-        events = pygame.event.get()    # Update the events list
-        player.update(events)
-        print(player.events)
-        draw()
+        WIN.fill(BLACK)     # Clears screen
+
+        player.draw(WIN)
+        player.update()
+
+        
+        
+        
+        
+        pygame.display.update()
+
+   
+      
         
 
 
