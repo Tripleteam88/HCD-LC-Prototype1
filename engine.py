@@ -160,11 +160,65 @@ class Player(pygame.sprite.Sprite):
                 if event.key == pygame.K_d:
                     self.moving_right = False
                  
+    def shoot(self):
+        pass
 
 
 
 
-                    
+class Bullet:
+        '''
+        Bullets are shot by the player, they deal damage to enemies and can only be shot 1 at a time.
+        They should be made to despawn once they exit the window(player view).
+        '''
+        def __init__(self, img: str, x, y, direction):
+            '''
+            Bullet starts at player position and moves in 1 of 4 possible directions.
+            The bullet direction must be an uppercase letter representing the direction of the bullet.
+            These must be specified by passing them as parameters.
+            Bullets are drawn once they are created. They have no draw function.
+            '''
+
+            # Speed of the bullet
+            self.speed = 25
+
+            # Starting coordinates//Should be the player position
+            self.x = x
+            self.y = y
+
+            # Sets the image of the bullet//Chose right one for each direction // 'D', 'U'. 'L', 'R'
+            self.img = pygame.image.load(img)
+            self.direction = direction
+
+
+        def move(self):
+            '''
+            This method handles the movement of each bullet.
+            It takes no arguments. It must be called on each bullet in order to move them.
+            '''
+            if self.direction == 'L':
+                self.x -= self.speed
+            elif self.direction == 'R':
+                self.x += self.speed
+            elif self.direction == 'U':
+                self.y -= self.speed
+            elif self.direction == 'D':
+                self.y += self.speed
+
+
+        def draw(self, WIN):
+            '''
+            This method should take the game window as a parameter
+            '''
+            WIN.blit(self.img, (self.x, self.y))
+
+
+        def collide(self):
+            '''
+            This method handles what happens when a bullet collides with another object.
+            '''
+            pass
+
 # =============================================================================================
 # =============================================================================================
 
