@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite):
         # -----------------------------------------
         # Combat ----------------------------------
         self.bullet_list = [] # Stores fired bullets
-
+        self.health = 200
         # -----------------------------------------
 
         
@@ -184,7 +184,7 @@ class Player(pygame.sprite.Sprite):
                     self.moving_left = False
                 if event.key == pygame.K_d:
                     self.moving_right = False
-                 
+    
     def shoot(self, direction):
         '''
         This method is used to create bullet objects(not manage them)
@@ -291,6 +291,79 @@ class Bullet(pygame.sprite.Sprite):
                 return False
             else: 
                 return True
+
+
+class Manager:
+    """
+    As the name implies, this object manages all the enemies in a level.
+    """
+    def __init__(self, player, enemy_list):
+        
+        
+        # Stores values with (data types)
+        self.player: Player = player
+        
+        self.enemies: list = enemy_list
+    
+    def manage_enemies(self):
+        pass
+
+    def update(self):
+        pass
+
+
+class Enemy(pygame.sprite.Sprite):
+    """
+    This is the basic enemy class that the player battles in the game.
+    I may want different types of enemies so this class should be very minimal.
+    """
+    def __init__(self, image):
+
+        # Image and rect objects
+        self.image = pygame.image.load(image).convert()
+        self.rect = self.image.get_rect()
+        
+        # Combat variables
+        self.health = 150
+        self.speed = 2 
+
+    def draw(self, WIN):
+        WIN.blit(self.image, (self.rect.x, self.rect.y))
+        
+    def move(self, player):
+        '''
+        Will move the enemy towards the player's position.
+        '''
+        if self.rect.x > player.rect.x:
+            self.rect.x -= self.speed
+        if self.rect.x < player.rect.x:
+            self.rect.x += self.speed
+        if self.rect.y > player.rect.y:
+            self.rect.y -= self.speed
+        if self.rect.y < player.rect.y:
+            self.rect.y += self.speed
+
+    def is_hit(self, bullet):
+        """
+        This method should be called by the manager class.
+        It will check if a given bullet has hit the enemy object
+        """
+        if self.rect.colliderect(bullet.rect):
+            return True
+        else:
+            return False
+
+    def update(self, player):
+        
+        # Move towards player
+        self.move(player)
+
+        
+        
+
+    
+
+
 # =============================================================================================
 # =============================================================================================
 

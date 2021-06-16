@@ -1,6 +1,6 @@
 import pygame
 import engine   # No astrisk so engine functions can be easily identified 
-
+from engine import Manager, Player, Bullet, Enemy
 
 pygame.init()
 pygame.display.init()
@@ -38,11 +38,17 @@ y = 100
 player = engine.Player(x, y, WIN)
 # ------------------------------------------
 
+# ------------------------------------------
+# Enemies ----------------------------------
+# ------------------------------------------
+enemy_list = [Enemy('Assets\Enemies\Alien.png')]
+# ------------------------------------------
+
 
 # ------------------------------------------
-# Combat control ---------------------------
+# Game control ---------------------------
 # ------------------------------------------
-
+game = Manager(player, enemy_list)
 # ------------------------------------------
 
 # ------------------------------------------
@@ -74,6 +80,7 @@ def main():
 
         player.draw(WIN)
         player.update(WIN)
+
         
 
         
