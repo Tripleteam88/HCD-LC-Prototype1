@@ -24,9 +24,9 @@ class Player(pygame.sprite.Sprite):
 
         # Creates a sprite using the instance of the player
         pygame.sprite.Sprite.__init__(self)
-        # Game window
-        self.WIN = WIN
-
+        # Game window dimensions
+        self.window_width = 1000
+        self.window_height = 600
         # -----------------------------------------
         # Movement and directional Parameters -----
         # -----------------------------------------
@@ -98,13 +98,15 @@ class Player(pygame.sprite.Sprite):
         self.manage_bullets(WIN)
 
         # Movement 
-        if self.moving_up == True:
+        if self.moving_up == True and self.rect.y > 0:
             self.rect.y -= self.speed
-        if self.moving_down == True:
+        if self.moving_down == True and self.rect.y < self.window_height - self.rect.height:
+            # The player's Point of reference( (x,y) coordinates) begins at the top left corner of the
+            # To enforce the window boundry, this must be accouted for (see above)
             self.rect.y += self.speed
-        if self.moving_left == True:
+        if self.moving_left == True and self.rect.x > 0:
             self.rect.x -= self.speed
-        if self.moving_right == True:
+        if self.moving_right == True and self.rect.x < self.window_width - self.rect.width:
             self.rect.x += self.speed
         # Direction
         if self.facing_up == True:
@@ -209,7 +211,6 @@ class Player(pygame.sprite.Sprite):
                 bullet.move()
                 bullet.draw(WIN)
             else:
-                print(bullet)
                 self.bullet_list.remove(bullet)
 
                 
