@@ -35,14 +35,14 @@ clock = pygame.time.Clock()
 x = 100
 y = 100
 # ------------------------------------------
-player = engine.Player(x, y)
+player = engine.Player(x, y, WIN)
 # ------------------------------------------
 
 
 # ------------------------------------------
 # Combat control ---------------------------
 # ------------------------------------------
-pass
+
 # ------------------------------------------
 
 # ------------------------------------------
@@ -73,10 +73,9 @@ def main():
         WIN.fill(BLACK)     # Clears screen by filling it with a background colour
 
         player.draw(WIN)
-        player.update()
+        player.update(WIN)
+        
 
-        
-        
         
         
         pygame.display.update()
